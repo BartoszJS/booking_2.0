@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import shareVideo from '../assets/share.mp4';
 import { Link } from 'react-router-dom';
 import OAuth from '../components/OAuth';
+import { toast } from 'react-toastify';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -9,6 +11,18 @@ const ForgotPassword = () => {
   const onChange = (e) => {
     setEmail(e.target.value);
   };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const auth = getAuth();
+      await sendPasswordResetEmail(auth, email);
+      toast.success('Sprawdź skrzynkę pocztową');
+    } catch (error) {
+      toast.error('Nie można wysłać wiadomości');
+    }
+  };
+
   return (
     <section>
       <div className='flex justify-start items-center flex-col h-screen'>
@@ -25,9 +39,9 @@ const ForgotPassword = () => {
           <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay'>
             <div className='text-center mt-6 font-semi-bold '>
               <h1 className='text-white text-3xl my-3'>Odzyskiwanie hasła</h1>
-              <form>
+              <form onSubmit={onSubmit}>
                 <input
-                  className='w-full px-4 py-2 text-xl text-grey-700 bg-white border-gray-300 rounded transition ease-in-out  mb-4'
+                  className='w-full px-4 py-2 text-xl text-grey-700 bg-white/50 border-gray-300 rounded transition ease-in-out  mb-4'
                   type='email'
                   id='email'
                   value={email}
@@ -45,7 +59,7 @@ const ForgotPassword = () => {
                   </p>
                 </div>
                 <button
-                  className='w-full bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800'
+                  className='w-full bg-blue-600/75 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800'
                   type='submit'
                 >
                   Wyślij maila weryfikacyjnego

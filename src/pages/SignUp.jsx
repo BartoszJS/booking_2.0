@@ -44,7 +44,7 @@ const SignUp = () => {
       delete formDataCopy.password;
       formDataCopy.timestamp = serverTimestamp();
       await setDoc(doc(db, 'users', user.uid), formDataCopy);
-      toast.success('Rejestracja udana');
+      //toast.success('Rejestracja udana');
       navigate('/');
     } catch (error) {
       toast.error('Coś poszło nie tak');
@@ -68,7 +68,7 @@ const SignUp = () => {
               <h1 className='text-white text-3xl my-3'>Zarejestruj się</h1>
               <form onSubmit={onSubmit}>
                 <input
-                  className='w-full px-4 py-2 text-xl text-grey-700 bg-white border-gray-300 rounded transition ease-in-out  mb-4'
+                  className='w-full px-4 py-2 text-xl text-grey-700 bg-white/50 border-gray-300 rounded transition ease-in-out  mb-4'
                   type='text'
                   id='name'
                   value={name}
@@ -76,7 +76,7 @@ const SignUp = () => {
                   placeholder='Imię'
                 />
                 <input
-                  className='w-full px-4 py-2 text-xl text-grey-700 bg-white border-gray-300 rounded transition ease-in-out  mb-4'
+                  className='w-full px-4 py-2 text-xl text-grey-700 bg-white/50 border-gray-300 rounded transition ease-in-out  mb-4'
                   type='email'
                   id='email'
                   value={email}
@@ -85,7 +85,7 @@ const SignUp = () => {
                 />
                 <div className='relative'>
                   <input
-                    className='w-full px-4 py-2 text-xl text-grey-700 bg-white border-gray-300 rounded transition ease-in-out'
+                    className='w-full px-4 py-2 text-xl text-grey-700 bg-white/50 border-gray-300 rounded transition ease-in-out'
                     type={showPassword ? 'text' : 'password'}
                     id='password'
                     value={password}
@@ -117,7 +117,7 @@ const SignUp = () => {
                   </p>
                 </div>
                 <button
-                  className='w-full bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800'
+                  className='w-full bg-blue-600/75 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800'
                   type='submit'
                 >
                   Zarejestruj się
