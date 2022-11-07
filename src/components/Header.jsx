@@ -10,33 +10,36 @@ const Header = () => {
     }
   };
   return (
-    <div className='bg-white border-b shadow-sm sticky top-0 z-50'>
-      <header className='flex justify-between items-center px-3 max-w-6xl mx-auto'>
-        <div className='cursor-pointer' onClick={() => navigate('/')}>
+    <div className='bg-black/50 w-full border-b shadow-sm fixed z-50'>
+      <header className=' flex justify-between items-center px-3 max-w-6xl mx-auto '>
+        <div
+          className='cursor-pointer text-white'
+          onClick={() => navigate('/')}
+        >
           LOGO
         </div>
         <div>
           <ul className='flex space-x-10'>
             <li
               onClick={() => navigate('/')}
-              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
-                pathMathRoute('/') && 'text-black border-b-red-500'
+              className={`cursor-pointer py-3 text-sm font-semibold text-white/70 border-b-[3px] border-b-transparent ${
+                pathMathRoute('/') && 'text-white/100 border-b-red-500'
               }`}
             >
               Home
             </li>
             <li
               onClick={() => navigate('/offers')}
-              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
-                pathMathRoute('/offers') && 'text-black border-b-red-500'
+              className={`cursor-pointer py-3 text-sm font-semibold text-white/70 border-b-[3px] border-b-transparent ${
+                pathMathRoute('/offers') && 'text-white/100 border-b-red-500'
               }`}
             >
               Offers
             </li>
             <li
               onClick={() => navigate('/sign-in')}
-              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
-                pathMathRoute('/sign-in') && 'text-black border-b-red-500'
+              className={`cursor-pointer py-3 text-sm font-semibold text-white/70 border-b-[3px] border-b-transparent ${
+                pathMathRoute('/sign-in') && 'text-white/100 border-b-red-500'
               }`}
             >
               Sign In

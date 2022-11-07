@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import shareVideo from '../assets/share.mp4';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../components/OAuth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { db } from '../firebase.js';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,12 +20,35 @@ const SignUp = () => {
     password: '',
   });
   const { name, email, password } = formData;
-
+  const navigate = useNavigate();
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.id]: e.target.value,
     }));
+  };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+      const user = userCredential.user;
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+      formDataCopy.timestamp = serverTimestamp();
+      await setDoc(doc(db, 'users', user.uid), formDataCopy);
+      toast.success('Rejestracja udana');
+      navigate('/');
+    } catch (error) {
+      toast.error('Coś poszło nie tak');
+    }
   };
   return (
     <section>
@@ -33,9 +64,9 @@ const SignUp = () => {
             className='w-full h-full object-cover'
           />
           <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay'>
-            <div className='text-center mt-6 font-semi-bold max-w-sm'>
+            <div className='text-center mt-6 font-semi-bold max-w-xs'>
               <h1 className='text-white text-3xl my-3'>Zarejestruj się</h1>
-              <form>
+              <form onSubmit={onSubmit}>
                 <input
                   className='w-full px-4 py-2 text-xl text-grey-700 bg-white border-gray-300 rounded transition ease-in-out  mb-4'
                   type='text'
