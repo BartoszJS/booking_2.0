@@ -1,10 +1,23 @@
-import React from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const pathMathRoute = (route) => {
+  const auth = getAuth();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setPageState('Profil');
+      } else {
+        setPageState('Rejestracja');
+      }
+    });
+  }, [auth]);
+
+  const [pageState, setPageState] = useState('Rejestracja');
+  const pathMatchRoute = (route) => {
     if (route === location.pathname) {
       return true;
     }
@@ -23,7 +36,7 @@ const Header = () => {
             <li
               onClick={() => navigate('/')}
               className={`cursor-pointer py-4 text-base font-semibold text-white/70 border-b-[3px] border-b-transparent ${
-                pathMathRoute('/') && 'text-white/100 border-b-red-500'
+                pathMatchRoute('/') && 'text-white/100 border-b-red-500'
               }`}
             >
               Home
@@ -31,18 +44,20 @@ const Header = () => {
             <li
               onClick={() => navigate('/offers')}
               className={`cursor-pointer py-4 text-base font-semibold text-white/70 border-b-[3px] border-b-transparent ${
-                pathMathRoute('/offers') && 'text-white/100 border-b-red-500'
+                pathMatchRoute('/offers') && 'text-white/100 border-b-red-500'
               }`}
             >
               Offers
             </li>
             <li
-              onClick={() => navigate('/sign-in')}
+              onClick={() => navigate('/profile')}
               className={`cursor-pointer py-4 text-base font-semibold text-white/70 border-b-[3px] border-b-transparent ${
-                pathMathRoute('/sign-in') && 'text-white/100 border-b-red-500'
+                pathMatchRoute('/sign-in') ||
+                (pathMatchRoute('/profile') &&
+                  'text-white/100 border-b-red-500')
               }`}
             >
-              Sign In
+              {pageState}
             </li>
           </ul>
         </div>
