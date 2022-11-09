@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import Spinner from '../components/Spinner';
 
 const CreateListing = () => {
+  const [geolocationEnabled, setGeolocationEnabled] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     type: 'rent',
     name: '',
@@ -11,8 +15,11 @@ const CreateListing = () => {
     address: '',
     description: '',
     offer: false,
-    regularPrice: '',
-    discountedPrice: '',
+    regularPrice: 0,
+    discountedPrice: 0,
+    latitude: 0,
+    longitude: 0,
+    image: {},
   });
   const {
     type,
@@ -26,12 +33,61 @@ const CreateListing = () => {
     offer,
     regularPrice,
     discountedPrice,
+    latitude,
+    longitude,
+    images,
   } = formData;
-  const onChange = () => {};
+  const onChange = (e) => {
+    let boolean = null;
+    if (e.target.value === 'true') {
+      boolean = true;
+    }
+    if (e.target.value === 'false') {
+      boolean = false;
+    }
+    //files
+    if (e.target.files) {
+      setFormData((prevState) => ({
+        ...prevState,
+        images: e.target.files,
+      }));
+    }
+
+    //text/boolean/number
+    if (!e.target.files) {
+      setFormData((prevState) => ({
+        ...prevState,
+        [e.target.id]: boolean ?? e.target.value,
+      }));
+    }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (discountedPrice >= regularPrice) {
+      setLoading(false);
+      toast.error('Zniżka musi być niższa niż cena');
+      return;
+    }
+    if (images.length > 6) {
+      setLoading(false);
+      toast.error('Maksymalnie 6 zdjęć');
+      return;
+    }
+    let geolocation = {};
+    let location;
+    if (geolocationEnabled) {
+    }
+  };
+
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <main className='max-w-md px-2 mx-auto'>
       <h1 className='text-3xl text-center font-bold pt-20'>Dodaj ogłoszenie</h1>
-      <form>
+      <form onSubmit={onSubmit}>
         <p className='text-lg mt-6 font-semibold'>Sprzedaj / Wynajmij</p>
         <div className='flex'>
           <button
@@ -43,7 +99,7 @@ const CreateListing = () => {
             id='type'
             value='sale'
             type='button'
-            onChange={onChange}
+            onClick={onChange}
           >
             SPRZEDAJ
           </button>
@@ -56,7 +112,7 @@ const CreateListing = () => {
             id='type'
             value='rent'
             type='button'
-            onChange={onChange}
+            onClick={onChange}
           >
             WYNAJMIJ
           </button>
@@ -110,7 +166,7 @@ const CreateListing = () => {
             id='parking'
             value={true}
             type='button'
-            onChange={onChange}
+            onClick={onChange}
           >
             Tak
           </button>
@@ -121,7 +177,7 @@ const CreateListing = () => {
             id='parking'
             value={false}
             type='button'
-            onChange={onChange}
+            onClick={onChange}
           >
             Nie
           </button>
@@ -135,7 +191,7 @@ const CreateListing = () => {
             id='furnished'
             value={true}
             type='button'
-            onChange={onChange}
+            onClick={onChange}
           >
             Tak
           </button>
@@ -146,7 +202,7 @@ const CreateListing = () => {
             id='furnished'
             value={false}
             type='button'
-            onChange={onChange}
+            onClick={onChange}
           >
             Nie
           </button>
@@ -161,6 +217,36 @@ const CreateListing = () => {
           required
           className='w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 '
         />
+        {!geolocationEnabled && (
+          <div className='flex space-x-6 justify-center mb-6'>
+            <div className=''>
+              <p className='text-lg font-semibold'>Szerokość geograficzna</p>
+              <input
+                type='number'
+                id='latitude'
+                value={latitude}
+                onChange={onChange}
+                required
+                min='-90'
+                max='90'
+                className='w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:bg-white focus:text-gray-700 focus:border-slate-600 text-center'
+              />
+            </div>
+            <div className=''>
+              <p className='text-lg font-semibold'>Długość geograficzna</p>
+              <input
+                type='number'
+                id='longitude'
+                value={longitude}
+                onChange={onChange}
+                required
+                min='-180'
+                max='180'
+                className='w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:bg-white focus:text-gray-700 focus:border-slate-600 text-center'
+              />
+            </div>
+          </div>
+        )}
         <p className='text-lg mt-6 font-semibold'>Opis</p>
         <textarea
           type='text'
@@ -180,7 +266,7 @@ const CreateListing = () => {
             id='offer'
             value={true}
             type='button'
-            onChange={onChange}
+            onClick={onChange}
           >
             Tak
           </button>
@@ -191,7 +277,7 @@ const CreateListing = () => {
             id='offer'
             value={false}
             type='button'
-            onChange={onChange}
+            onClick={onChange}
           >
             Nie
           </button>
@@ -227,7 +313,7 @@ const CreateListing = () => {
               <div className='flex justify-center items-center'>
                 <input
                   type='number'
-                  id=' discountedPrice'
+                  id='discountedPrice'
                   value={discountedPrice}
                   onChange={onChange}
                   min='50'
@@ -235,6 +321,7 @@ const CreateListing = () => {
                   required={offer}
                   className='w-full px-4 py-2 text-lg text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center'
                 />
+
                 {type === 'rent' && (
                   <div className='ml-2'>
                     <p className='text-md w-full whitespace-nowrap'>
