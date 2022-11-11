@@ -156,7 +156,7 @@ const CreateListing = () => {
       [...images].map((image) => storeImage(image))
     ).catch((error) => {
       setLoading(false);
-      toast.error('Brak zdjęć');
+      toast.error('Brak zdjęć lub za duży rozmiar');
     });
 
     const formDataCopy = {

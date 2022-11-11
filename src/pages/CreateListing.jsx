@@ -122,7 +122,7 @@ const CreateListing = () => {
       [...images].map((image) => storeImage(image))
     ).catch((error) => {
       setLoading(false);
-      toast.error('Brak zdjęć');
+      toast.error('Brak zdjęć lub za duży rozmiar');
     });
 
     const formDataCopy = {
@@ -338,7 +338,7 @@ const CreateListing = () => {
         {offer && (
           <div className='flex justify-center mb-6'>
             <div>
-              <p className='text-lg font-semibold'>Wielkość zniżki</p>
+              <p className='text-lg font-semibold'>Cena po zniżce</p>
               <div className='flex justify-center items-center'>
                 <input
                   type='number'
