@@ -171,7 +171,7 @@ const CreateListing = () => {
 
     await updateDoc(docRef, formDataCopy);
     setLoading(false);
-    toast.success('Pozycja dodana');
+    toast.success('Edycja udana');
     navigate(`/category/${formDataCopy.type}/${docRef.id}`);
   };
 
