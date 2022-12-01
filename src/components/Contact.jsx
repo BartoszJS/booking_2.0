@@ -27,7 +27,7 @@ const Contact = ({ userRef, listing }) => {
     <div>
       {landlord && (
         <div className='flex flex-col w-full'>
-          <p className=''>
+          <p className='text-white'>
             Skontaktuj się z {landlord.name} w sprawie "
             {listing.name.toLowerCase()}"
           </p>
@@ -38,7 +38,7 @@ const Contact = ({ userRef, listing }) => {
               rows='3'
               value={message}
               onChange={onChange}
-              className='w-full px-4 py-2 text-xl text-gray-700 bg-white border border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 resize-none'
+              className='w-full px-4 py-2 text-xl text-white bg-[#26212c] border border-gray-300 rounded transition duration-150 ease-in-out focus:text-white focus:bg-[#322c3a] focus:border-slate-600 resize-none'
             />
           </div>
           <a

@@ -111,11 +111,11 @@ export default function Home() {
       <div className='max-w-6xl mx-auto pt-4 space-y-6'>
         {offerListings && offerListings.length > 0 && (
           <div className='m-2 mb-6'>
-            <h2 className='px-3 text-2xl mt-6 font-semibold'>
+            <h2 className='text-white px-3 text-2xl mt-6 font-semibold'>
               Przecenione miejsca
             </h2>
             <Link to='/offers'>
-              <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>
+              <p className='px-3 text-sm text-blue-400 hover:text-blue-500 transition duration-150 ease-in-out'>
                 Pokaż wiecej ofert
               </p>
             </Link>
@@ -132,11 +132,11 @@ export default function Home() {
         )}
         {rentListings && rentListings.length > 0 && (
           <div className='m-2 mb-6'>
-            <h2 className='px-3 text-2xl mt-6 font-semibold'>
+            <h2 className='text-white px-3 text-2xl mt-6 font-semibold'>
               Miejsca do wynajęcia
             </h2>
             <Link to='/category/rent'>
-              <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>
+              <p className='px-3 text-sm text-blue-400 hover:text-blue-500 transition duration-150 ease-in-out'>
                 Pokaż wiecej miejsc do wynajecia
               </p>
             </Link>
@@ -153,11 +153,11 @@ export default function Home() {
         )}
         {saleListings && saleListings.length > 0 && (
           <div className='m-2 mb-6'>
-            <h2 className='px-3 text-2xl mt-6 font-semibold'>
+            <h2 className='text-white px-3 text-2xl mt-6 font-semibold'>
               Miejsca na sprzedaż
             </h2>
             <Link to='/category/sale'>
-              <p className='px-3 text-sm text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out'>
+              <p className='px-3 text-sm text-blue-400 hover:text-blue-500 transition duration-150 ease-in-out'>
                 Pokaż wiecej miejsc na sprzedaż
               </p>
             </Link>

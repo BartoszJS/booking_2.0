@@ -7,10 +7,10 @@ import { MdEdit } from 'react-icons/md';
 
 const ListingItem = ({ listing, id, onEdit, onDelete }) => {
   return (
-    <li className='relative bg-white flex flex-col justify-between items-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition duration-150 m-[10px]'>
+    <li className='relative bg-dark-primary flex flex-col justify-between items-center shadow-md hover:scale-105 transition-scale ease-in hover:bg-[#26212c] transition duration-150 rounded-md overflow-hidden  m-[10px]'>
       <Link className='contents' to={`/category/${listing.type}/${id}`}>
         <img
-          className='h-[170px] w-full object-cover hover:scale-105 transition-scale duration-200 ease-in'
+          className='h-[170px] w-full object-cover '
           loading='lazy'
           src={listing.imgUrls[0]}
           alt=''
@@ -24,16 +24,18 @@ const ListingItem = ({ listing, id, onEdit, onDelete }) => {
         <div className='w-full p-[10px]'>
           <div className='flex items-center space-x-1'>
             <MdLocationOn className='h-4 w-4 text-green-600' />
-            <p className='font-semibold text-sm mb-[2px] text-gray-600 truncate'>
+            <p className='font-semibold text-sm mb-[2px] text-gray-200 truncate'>
               {listing.address}
             </p>
           </div>
-          <p className='font-semibold mt-2 text-xl truncate'>{listing.name}</p>
-          <p className='text-[#457b9d] mt-2 font-semibold'>
+          <p className='text-white font-semibold mt-2 text-xl truncate'>
+            {listing.name}
+          </p>
+          <p className='text-gray-200 mt-2 font-semibold'>
             ${listing.offer ? listing.discountedPrice : listing.regularPrice}
             {listing.type === 'rent' && ' / Miesiąc'}
           </p>
-          <div className='flex items-center mt-[10px] space-x-3'>
+          <div className='text-white flex items-center mt-[10px] space-x-3'>
             <div className='flex items-center space-x-1'>
               <p className='font-bold text-xs'>Łóżka : {listing.bedrooms}</p>
               <p className='font-bold text-xs'>
@@ -51,7 +53,7 @@ const ListingItem = ({ listing, id, onEdit, onDelete }) => {
       )}
       {onEdit && (
         <MdEdit
-          className='absolute bottom-2 right-7 h-[16px] cursor-pointer text-black-500'
+          className='absolute bottom-2 right-7 h-[16px] cursor-pointer text-slate-300'
           onClick={() => onEdit(listing.id)}
         />
       )}

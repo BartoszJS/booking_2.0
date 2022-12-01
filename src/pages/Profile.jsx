@@ -99,7 +99,9 @@ const Profile = () => {
   return (
     <>
       <section className='max-w-6xl mx-auto flex justify-center items-center flex-col'>
-        <h1 className='text-3xl text-center font-bold pt-20'>Profil</h1>
+        <h1 className='text-3xl text-white text-center font-bold pt-20'>
+          Profil
+        </h1>
         <div className='w-full md:w-[50%] mt-6 px-3'>
           <form>
             <input
@@ -108,8 +110,8 @@ const Profile = () => {
               value={name}
               disabled={!changeDetail}
               onChange={onChange}
-              className={`w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition duration-150 ease-in-out mb-6 ${
-                changeDetail && 'bg-red-200 focus:bg-red-200'
+              className={`w-full px-4 py-2 text-xl text-white bg-[#322c3a] border-[#322c3a] rounded transition duration-150 ease-in-out mb-6 ${
+                changeDetail && 'bg-red-200 focus:bg-[#322c3a]'
               }`}
             />
             <input
@@ -118,7 +120,7 @@ const Profile = () => {
               value={email}
               disabled={!changeDetail}
               onChange={onChange}
-              className='w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition duration-150 ease-in-out mb-6'
+              className='w-full px-4 py-2 text-xl text-white bg-[#322c3a] border-[#322c3a] rounded transition duration-150 ease-in-out mb-6'
             />
 
             <div>
@@ -128,11 +130,14 @@ const Profile = () => {
                     changeDetail && onSubmit();
                     setChangeDetail((prevState) => !prevState);
                   }}
-                  className='cursor-pointer'
+                  className='cursor-pointer  text-black bg-green-500 rounded p-2  text-center hover:bg-green-600 transition duration-200 ease-in-out hover:text-white'
                 >
                   {changeDetail ? 'Zastosuj zmiany' : 'Edytuj'}
                 </span>
-                <span onClick={onLogout} className='cursor-pointer'>
+                <span
+                  onClick={onLogout}
+                  className='cursor-pointer  text-black bg-red-500 rounded p-2 text-center hover:bg-red-600 transition duration-200 ease-in-out hover:text-white'
+                >
                   Wyloguj się
                 </span>
               </p>
@@ -155,7 +160,9 @@ const Profile = () => {
       <div className='max-w-6xl px-3 mt-6 mx-auto'>
         {!loading && listings.length > 0 && (
           <>
-            <h2 className='text-2xl text-center font-semibold'>Moje dodane</h2>
+            <h2 className='text-2xl text-white text-center font-semibold'>
+              Moje dodane
+            </h2>
             <ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 mb-6'>
               {listings.map((listing) => (
                 <ListingItem

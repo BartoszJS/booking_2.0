@@ -47,7 +47,7 @@ const Listing = () => {
   }
 
   return (
-    <main className='pt-[59px]'>
+    <main>
       <Swiper
         slidesPerView={1}
         navigation
@@ -59,17 +59,18 @@ const Listing = () => {
         {listing.imgUrls.map((url, index) => (
           <SwiperSlide key={index}>
             <div
-              className='relative w-full overflow-hidden h-[400px]'
+              className='relative w-full h-[600px] overflow-hidden'
               style={{
                 backgroundSize: 'cover',
-                background: `url(${listing.imgUrls[index]}) center no-repeat`,
+                backgroundPosition: 'center',
+                background: `url("${listing.imgUrls[index]}") center no-repeat`,
               }}
             ></div>
           </SwiperSlide>
         ))}
       </Swiper>
       <div
-        className='fixed top-[11%] right-[3%] z-10 bg-white cursor-pointer border-2 border-gray-400 rounded-full w-12 h-12 flex justify-center items-center'
+        className='fixed top-[11%] right-[3%] z-10 bg-[#1F1B24] cursor-pointer border-2 border-gray-400 rounded-full w-12 h-12 flex justify-center items-center'
         onClick={() => {
           navigator.clipboard.writeText(window.location.href);
           setSharedLink(true);
@@ -81,18 +82,18 @@ const Listing = () => {
         <FaShare className='text-lg text-slate-500' />
       </div>
       {sharedLink && (
-        <p className='fixed top-[18%] right-[4%] font-semibold border-2 border-gray-400 rounded-md bg-white z-10 p-1'>
+        <p className='fixed top-[18%] right-[4%] font-semibold border-2 border-gray-400 rounded-md bg-[#1F1B24] z-10 p-1'>
           Skopiowano
         </p>
       )}
-      <div className='m-4 flex flex-col md:flex-row max-w-6xl lg:mx-auto p-4 rounded-lg border-3 shadow-lg bg-white lg:space-x-5'>
+      <div className='m-4 flex flex-col md:flex-row max-w-6xl lg:mx-auto p-4 rounded-lg border-3 shadow-lg bg-[#1F1B24] lg:space-x-5'>
         <div className='w-full'>
-          <p className='text-2xl font-bold mb-3 text-blue-900'>
-            {listing.name} - $
-            {listing.offer ? listing.discountedPrice : listing.regularPrice}
+          <p className='text-2xl font-bold mb-3 text-blue-200'>
+            {listing.name}{' '}
+            {listing.offer ? listing.discountedPrice : listing.regularPrice}zł
             {listing.type === 'rent' ? ' / Miesiąc' : ''}
           </p>
-          <p className='flex items-center mt-6 mb-3 font-semibold'>
+          <p className='flex text-white items-center mt-6 mb-3 font-semibold'>
             <FaMapMarkerAlt className='text-green-700 mr-1' />
             {listing.address}
           </p>
@@ -102,29 +103,29 @@ const Listing = () => {
             </p>
             {listing.offer && (
               <p className='w-full max-w-[200px] bg-green-800 rounded-md p-1 text-white text-center font-semibold'>
-                ${+listing.regularPrice - +listing.discountedPrice} zniżki
+                {+listing.regularPrice - +listing.discountedPrice}zł zniżki
               </p>
             )}
           </div>
-          <p className='mt-3 mb-3'>
+          <p className='mt-3 mb-3 text-white'>
             <span className='font-semibold'> Opis - </span>
             {listing.description}
           </p>
-          <ul className='grid grid-cols-2 sm:space-x-3 sm:flex sm:items-center text-sm font-semibold'>
+          <ul className='grid grid-cols-2 sm:space-x-3 sm:flex sm:items-center text-sm font-semibold text-white'>
             <li className='flex items-center whitespace-nowrap'>
-              <FaBed className='text-lg mr-1' />
+              <FaBed className='text-lg mr-1 text-green-600' />
               Łóżka: {+listing.bedrooms}
             </li>
             <li className='flex items-center whitespace-nowrap'>
-              <FaBath className='text-lg mr-1' />
+              <FaBath className='text-lg mr-1 text-green-600' />
               Łazienki: {+listing.bathrooms}
             </li>
             <li className='flex items-center whitespace-nowrap'>
-              <FaParking className='text-lg mr-1' />
+              <FaParking className='text-lg mr-1 text-green-600' />
               {listing.parking ? 'Parking' : 'Brak parkingu'}
             </li>
             <li className='flex items-center whitespace-nowrap'>
-              <FaChair className='text-lg mr-1' />
+              <FaChair className='text-lg mr-1 text-green-600' />
               {listing.furnished ? 'Umeblowane' : 'Nieumeblowane'}
             </li>
           </ul>
