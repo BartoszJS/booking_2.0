@@ -59,6 +59,7 @@ const SignUp = () => {
             type='video/mp4'
             loop
             controls={false}
+            preload='none'
             muted
             autoPlay
             className='w-full h-full object-cover'

@@ -14,7 +14,6 @@ import {
 import { db } from '../firebase';
 
 const CreateListing = () => {
-  const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const auth = getAuth();
