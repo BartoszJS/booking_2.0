@@ -139,6 +139,7 @@ const CreateListing = () => {
               case 'running':
                 console.log('Upload is running');
                 break;
+              default:
             }
           },
           (error) => {
@@ -180,17 +181,19 @@ const CreateListing = () => {
   }
   return (
     <main className='max-w-md px-2 mx-auto'>
-      <h1 className='text-3xl text-center font-bold pt-20'>
+      <h1 className='text-3xl text-center font-bold pt-20 text-white'>
         Edytuj ogłoszenie
       </h1>
       <form onSubmit={onSubmit}>
-        <p className='text-lg mt-6 font-semibold'>Sprzedaj / Wynajmij</p>
+        <p className='text-lg mt-6 font-semibold text-white'>
+          Sprzedaj / Wynajmij
+        </p>
         <div className='flex'>
           <button
             className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover: shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
               type === 'rent'
-                ? 'bg-white text-black'
-                : 'bg-slate-600 text-white'
+                ? 'bg-[#1F1B24] text-white border border-gray-400'
+                : 'bg-[#322c3a] text-white border-2 border-blue-800'
             }`}
             id='type'
             value='sale'
@@ -202,8 +205,8 @@ const CreateListing = () => {
           <button
             className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover: shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
               type === 'sale'
-                ? 'bg-white text-black'
-                : 'bg-slate-600 text-white'
+                ? 'bg-[#1F1B24] text-gray-400 border border-gray-400'
+                : 'bg-[#322c3a] text-white border-2 border-blue-800'
             }`}
             id='type'
             value='rent'
@@ -213,21 +216,20 @@ const CreateListing = () => {
             WYNAJMIJ
           </button>
         </div>
-        <p className='text-lg mt-6 font-semibold'>Nazwa</p>
+        <p className='text-lg mt-6 font-semibold text-white'>Nazwa</p>
         <input
           type='text'
           id='name'
           value={name}
           onChange={onChange}
-          placeholder='Nazwa'
           maxLength='32'
           minLength='5'
           required
-          className='w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 mb-6'
+          className='w-full px-4 py-2 text-xl text-gray-300 bg-[#1F1B24] border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-300 focus:bg-[#1F1B24] focus:border-slate-600 mb-6'
         />
         <div className='flex space-x-6 justify-center mb-6'>
           <div>
-            <p className='text-lg font-semibold'>Sypialnie</p>
+            <p className='text-lg font-semibold text-white'>Sypialnie</p>
             <input
               type='number'
               id='bedrooms'
@@ -236,11 +238,11 @@ const CreateListing = () => {
               min='1'
               max='50'
               required
-              className='w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600'
+              className='w-full px-4 py-2 text-xl text-gray-300 bg-[#1F1B24] border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-300 focus:bg-[#1F1B24] focus:border-slate-600'
             />
           </div>
           <div>
-            <p className='text-lg font-semibold'>Łazienki</p>
+            <p className='text-lg font-semibold text-white'>Łazienki</p>
             <input
               type='number'
               id='bathrooms'
@@ -249,15 +251,19 @@ const CreateListing = () => {
               min='1'
               max='50'
               required
-              className='w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600'
+              className='w-full px-4 py-2 text-xl text-gray-300 bg-[#1F1B24] border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-300 focus:bg-[#1F1B24] focus:border-slate-600'
             />
           </div>
         </div>
-        <p className='text-lg mt-6 font-semibold'>Miejsce parkingowe</p>
+        <p className='text-lg mt-6 font-semibold text-white'>
+          Miejsce parkingowe
+        </p>
         <div className='flex'>
           <button
             className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover: shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              !parking ? 'bg-white text-black' : 'bg-slate-600 text-white'
+              !parking
+                ? 'bg-[#1F1B24] text-gray-400 border border-gray-400'
+                : 'bg-[#322c3a] text-white border-2 border-blue-800'
             }`}
             id='parking'
             value={true}
@@ -268,7 +274,9 @@ const CreateListing = () => {
           </button>
           <button
             className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover: shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              parking ? 'bg-white text-black' : 'bg-slate-600 text-white'
+              parking
+                ? 'bg-[#1F1B24] text-gray-400 border border-gray-400'
+                : 'bg-[#322c3a] text-white border-2 border-blue-800'
             }`}
             id='parking'
             value={false}
@@ -278,11 +286,13 @@ const CreateListing = () => {
             Nie
           </button>
         </div>
-        <p className='text-lg mt-6 font-semibold'>Umeblowane</p>
+        <p className='text-lg mt-6 font-semibold text-white'>Umeblowane</p>
         <div className='flex'>
           <button
             className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover: shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              !furnished ? 'bg-white text-black' : 'bg-slate-600 text-white'
+              !furnished
+                ? 'bg-[#1F1B24] text-gray-400 border border-gray-400'
+                : 'bg-[#322c3a] text-white border-2 border-blue-800'
             }`}
             id='furnished'
             value={true}
@@ -293,7 +303,9 @@ const CreateListing = () => {
           </button>
           <button
             className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover: shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              furnished ? 'bg-white text-black' : 'bg-slate-600 text-white'
+              furnished
+                ? 'bg-[#1F1B24] text-gray-400 border border-gray-400'
+                : 'bg-[#322c3a] text-white border-2 border-blue-800'
             }`}
             id='furnished'
             value={false}
@@ -303,32 +315,32 @@ const CreateListing = () => {
             Nie
           </button>
         </div>
-        <p className='text-lg mt-6 font-semibold'>Adres</p>
+        <p className='text-lg mt-6 font-semibold text-white'>Adres</p>
         <textarea
           type='text'
           id='address'
           value={address}
           onChange={onChange}
-          placeholder='Adres'
           required
-          className='w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 '
+          className='w-full px-4 py-2 text-xl text-gray-300 bg-[#1F1B24] border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-300 focus:bg-[#1F1B24] focus:border-slate-600 '
         />
 
-        <p className='text-lg mt-6 font-semibold'>Opis</p>
+        <p className='text-lg mt-6 font-semibold text-white'>Opis</p>
         <textarea
           type='text'
           id='description'
           value={description}
           onChange={onChange}
-          placeholder='Opis'
           required
-          className='w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 mb-2'
+          className='w-full px-4 py-2 text-xl text-gray-300 bg-[#1F1B24] border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-300 focus:bg-[#1F1B24] focus:border-slate-600 mb-2'
         />
-        <p className='text-lg mt-6 font-semibold'>Zniżka</p>
+        <p className='text-lg mt-6 font-semibold text-white'>Zniżka</p>
         <div className='flex mb-6'>
           <button
             className={`mr-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover: shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              !offer ? 'bg-white text-black' : 'bg-slate-600 text-white'
+              !offer
+                ? 'bg-[#1F1B24] text-gray-400 border border-gray-400'
+                : 'bg-[#322c3a] text-white border-2 border-blue-800'
             }`}
             id='offer'
             value={true}
@@ -339,7 +351,9 @@ const CreateListing = () => {
           </button>
           <button
             className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover: shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
-              offer ? 'bg-white text-black' : 'bg-slate-600 text-white'
+              offer
+                ? 'bg-[#1F1B24] text-gray-400 border border-gray-400'
+                : 'bg-[#322c3a] text-white border border-gray-300'
             }`}
             id='offer'
             value={false}
@@ -351,7 +365,7 @@ const CreateListing = () => {
         </div>
         <div className='flex justify-center mb-6'>
           <div>
-            <p className='text-lg font-semibold'>Cena</p>
+            <p className='text-lg font-semibold text-white'>Cena</p>
             <div className='flex justify-center items-center'>
               <input
                 type='number'
@@ -361,11 +375,11 @@ const CreateListing = () => {
                 min='50'
                 max='400000000'
                 required
-                className='w-full px-4 py-2 text-lg text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center'
+                className='w-full px-4 py-2 text-lg text-gray-300 bg-[#1F1B24] border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-300 focus:bg-[#1F1B24] focus:border-slate-600 text-center'
               />
               {type === 'rent' && (
                 <div className='ml-2'>
-                  <p className='text-md w-full whitespace-nowrap'>
+                  <p className='text-md w-full whitespace-nowrap text-white'>
                     zł / Miesiąc
                   </p>
                 </div>
@@ -376,7 +390,7 @@ const CreateListing = () => {
         {offer && (
           <div className='flex justify-center mb-6'>
             <div>
-              <p className='text-lg font-semibold'>Wielkość zniżki</p>
+              <p className='text-lg font-semibold text-white'>Cena po zniżce</p>
               <div className='flex justify-center items-center'>
                 <input
                   type='number'
@@ -386,12 +400,12 @@ const CreateListing = () => {
                   min='50'
                   max='400000000'
                   required={offer}
-                  className='w-full px-4 py-2 text-lg text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center'
+                  className='w-full px-4 py-2 text-lg text-gray-300 bg-[#1F1B24] border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-300 focus:bg-[#1F1B24] focus:border-slate-600 text-center'
                 />
 
                 {type === 'rent' && (
                   <div className='ml-2'>
-                    <p className='text-md w-full whitespace-nowrap'>
+                    <p className='text-md w-full whitespace-nowrap text-white'>
                       zł / Miesiąc
                     </p>
                   </div>
@@ -401,8 +415,8 @@ const CreateListing = () => {
           </div>
         )}
         <div className='mb-6'>
-          <p className='text-lg font-semibold'>Zdjęcia</p>
-          <p className='text-gray-600'>
+          <p className='text-lg font-semibold text-white'>Zdjęcia</p>
+          <p className='text-gray-200'>
             Pierwsze zdjecie bedzie zdjęciem głownym(max 6)
           </p>
           <input
@@ -412,14 +426,14 @@ const CreateListing = () => {
             accept='.jpg, .png, .jpeg'
             multiple
             required
-            className='w-full px-3 py-1.5 text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:bg-white focus:border-slate-600'
+            className='w-full px-3 py-1.5 text-gray-300 bg-[#1F1B24] border border-gray-300 rounded transition duration-150 ease-in-out focus:bg-[#1F1B24] focus:border-slate-600'
           />
         </div>
         <button
           type='submit'
           className='mb-6 w-full px-7 py-3 bg-blue-600 text-white font-medium text-sm uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
         >
-          Edytuj ofertę
+          Stwórz ofertę
         </button>
       </form>
     </main>

@@ -111,7 +111,7 @@ const Profile = () => {
               disabled={!changeDetail}
               onChange={onChange}
               className={`w-full px-4 py-2 text-xl text-white bg-[#322c3a] border-[#322c3a] rounded transition duration-150 ease-in-out mb-6 ${
-                changeDetail && 'bg-red-200 focus:bg-[#322c3a]'
+                changeDetail && 'bg-[#322c3a] focus:bg-[#322c3a]'
               }`}
             />
             <input

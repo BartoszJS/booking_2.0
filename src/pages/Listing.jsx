@@ -59,12 +59,12 @@ const Listing = () => {
         {listing.imgUrls.map((url, index) => (
           <SwiperSlide key={index}>
             <div
-              className='relative w-full h-[600px] overflow-hidden'
               style={{
+                backgroundImage: `url("${listing.imgUrls[index]}")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                background: `url("${listing.imgUrls[index]}") center no-repeat`,
               }}
+              className='relative w-full h-[600px] overflow-hidden '
             ></div>
           </SwiperSlide>
         ))}
@@ -79,10 +79,10 @@ const Listing = () => {
           }, 2000);
         }}
       >
-        <FaShare className='text-lg text-slate-500' />
+        <FaShare className='text-lg text-slate-200' />
       </div>
       {sharedLink && (
-        <p className='fixed top-[18%] right-[4%] font-semibold border-2 border-gray-400 rounded-md bg-[#1F1B24] z-10 p-1'>
+        <p className='fixed top-[18%] right-[4%] font-semibold border-2 border-gray-400 rounded-md bg-[#1F1B24] z-10 p-1 text-white'>
           Skopiowano
         </p>
       )}

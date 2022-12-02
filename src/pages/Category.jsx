@@ -78,8 +78,8 @@ const Category = () => {
 
   return (
     <div className='max-w-6xl mx-auto px-3'>
-      <h1 className='text-3xl text-center pt-20 mb-6'>
-        {params.categoryName == 'rent'
+      <h1 className='text-3xl text-center pt-20 mb-6 text-white'>
+        {params.categoryName === 'rent'
           ? 'Miejsca do wynajecia'
           : 'Miejsca na sprzedaż'}
       </h1>
@@ -102,9 +102,9 @@ const Category = () => {
             <div className='flex justify-center items-center'>
               <button
                 onClick={onFetchMoreListings}
-                className='bg-white px-4 py-2 text-gray-700 border border-gray-300 mb-6 mt-6 hover:border-slate-600 rounded transition duration-150 ease-in-out'
+                className='bg-blue-600 px-4 py-2 text-white mb-6 mt-6 hover:border-slate-600 rounded transition duration-150 ease-in-out'
               >
-                Load more
+                Pokaż więcej
               </button>
             </div>
           )}
