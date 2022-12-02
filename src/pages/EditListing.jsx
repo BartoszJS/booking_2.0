@@ -353,7 +353,7 @@ const CreateListing = () => {
             className={`ml-3 px-7 py-3 font-medium text-sm uppercase shadow-md rounded hover: shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
               offer
                 ? 'bg-[#1F1B24] text-gray-400 border border-gray-400'
-                : 'bg-[#322c3a] text-white border border-gray-300'
+                : 'bg-[#322c3a] text-white border-2 border-blue-800'
             }`}
             id='offer'
             value={false}
