@@ -32,7 +32,7 @@ const ListingItem = ({ listing, id, onEdit, onDelete }) => {
             {listing.name}
           </p>
           <p className='text-gray-200 mt-2 font-semibold'>
-            ${listing.offer ? listing.discountedPrice : listing.regularPrice}
+            {listing.offer ? listing.discountedPrice : listing.regularPrice}zł
             {listing.type === 'rent' && ' / Miesiąc'}
           </p>
           <div className='text-white flex items-center mt-[10px] space-x-3'>
