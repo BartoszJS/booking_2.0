@@ -27,3 +27,21 @@ html::-webkit-scrollbar {
 html {
   scrollbar-width: none;
 }
+
+.hamburger {
+  font-size: 28px;
+  color: white;
+  display: none;
+}
+.header_content {
+  display: block;
+}
+
+@media screen and (width<600px) {
+  .hamburger {
+    display: block;
+  }
+  .header_content {
+    display: none;
+  }
+}
