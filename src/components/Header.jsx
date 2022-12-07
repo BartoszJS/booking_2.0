@@ -39,7 +39,7 @@ const Header = () => {
           className='cursor-pointer text-white text-xl flex justify-center items-center'
           onClick={() => navigate('/')}
         >
-          <HiHome /> HOMELY
+          <HiHome /> HOME
         </div>
         <div>
           <ul className='flex justify-center items-center space-x-10'>
